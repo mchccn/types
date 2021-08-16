@@ -1,0 +1,30 @@
+import { FunctionType } from "../types/FunctionType";
+import { Type } from "../types/Type";
+
+export function construct<Fn extends (...args: any[]) => any>(type: FunctionType, fn: Fn): Fn;
+export function construct(): void;
+export function construct(...args: [Type, (...args: any[]) => any] | []) {
+    if (args.length === 0) return;
+
+    if (args.length === 2 && args[0] instanceof FunctionType && typeof args[1] === "function") {
+        const [{ parameters, returnType }, fn] = args;
+
+        return function (...args: Parameters<typeof fn>) {
+            if (args.length !== parameters.length) throw new TypeError(`Expected ${parameters.length} arguments, but got ${args.length}.`);
+
+            const i = parameters.findIndex((parameter, i) => !parameter.validate(args[i]));
+
+            if (i > -1) throw new Error(`Expected type '${parameters[i].name}' for parameter at index ${i}.`);
+
+            const v = fn.apply(fn, args);
+
+            if (!returnType.validate(v)) throw new Error(`Expected type '${returnType.name}' for the return value.`);
+
+            return v;
+        };
+    }
+
+    if (args.length > 2) throw new Error(`Expected 2 arguments, but got ${args.length}`);
+
+    throw new Error(`Invalid arguments to 'types.construct'.`);
+}
