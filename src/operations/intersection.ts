@@ -1,8 +1,8 @@
 import { IntersectionType } from "../types/IntersectionType";
 import { Type } from "../types/Type";
 
-export function intersection(name: string, types: Type[]): IntersectionType;
-export function intersection(types: Type[]): IntersectionType;
+export function intersection<Intersection extends Type[] = Type[]>(name: string, types: Intersection): IntersectionType<Intersection>;
+export function intersection<Intersection extends Type[] = Type[]>(types: Intersection): IntersectionType<Intersection>;
 export function intersection(): IntersectionType;
 export function intersection(...args: [string, Type[]] | [Type[]] | []) {
     if (args.length === 0) return new IntersectionType("[anonymous]", []);

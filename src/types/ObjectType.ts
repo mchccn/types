@@ -2,10 +2,10 @@ import { TYPE } from "../constants";
 import { PrimitiveType } from "./PrimitiveType";
 import { Type } from "./Type";
 
-type ObjectTypeProps = [PropertyKey, PrimitiveType | ObjectTypeProps][];
-type FinalObjectTypeProps = [PropertyKey, PrimitiveType | ObjectType][];
+export type ObjectTypeProps = [PropertyKey, PrimitiveType | ObjectTypeProps][];
+export type FinalObjectTypeProps = [PropertyKey, PrimitiveType | ObjectType][];
 
-export class ObjectType extends Type {
+export class ObjectType<Props extends ObjectTypeProps = ObjectTypeProps> extends Type {
     private readonly [TYPE] = "ObjectType";
 
     public readonly props: FinalObjectTypeProps;

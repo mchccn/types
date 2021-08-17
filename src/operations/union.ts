@@ -1,8 +1,8 @@
 import { Type } from "../types/Type";
 import { UnionType } from "../types/UnionType";
 
-export function union(name: string, types: Type[]): UnionType;
-export function union(types: Type[]): UnionType;
+export function union<Union extends Type[] = Type[]>(name: string, types: Union): UnionType<Union>;
+export function union<Union extends Type[] = Type[]>(types: Union): UnionType<Union>;
 export function union(): UnionType;
 export function union(...args: [string, Type[]] | [Type[]] | []) {
     if (args.length === 0) return new UnionType("[anonymous]", []);

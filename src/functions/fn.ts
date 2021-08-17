@@ -2,9 +2,16 @@ import { FunctionType } from "../types/FunctionType";
 import { PrimitiveType } from "../types/PrimitiveType";
 import { Type } from "../types/Type";
 
-export function fn(name: string, parameters: Type[], returnType: Type): FunctionType;
-export function fn(parameters: Type[], returnType: Type): FunctionType;
-export function fn(returnType: Type): FunctionType;
+export function fn<Parameters extends Type[] = Type[], ReturnType extends Type = Type>(
+    name: string,
+    parameters: Type[],
+    returnType: Type
+): FunctionType<Parameters, ReturnType>;
+export function fn<Parameters extends Type[] = Type[], ReturnType extends Type = Type>(
+    parameters: Type[],
+    returnType: Type
+): FunctionType<Parameters, ReturnType>;
+export function fn<ReturnType extends Type>(returnType: ReturnType): FunctionType<Type[], ReturnType>;
 export function fn(): FunctionType;
 export function fn(...args: [string, Type[], Type] | [Type[], Type] | [Type] | []) {
     if (args.length === 0) return new FunctionType("[anonymous]", [], PrimitiveType.TYPES.any);
