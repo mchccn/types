@@ -1,5 +1,7 @@
+import { condition } from "./functions/condition";
 import { construct } from "./functions/construct";
 import { fn } from "./functions/fn";
+import { generic } from "./functions/generic";
 import { intersection } from "./operations/intersection";
 import { not } from "./operations/not";
 import { union } from "./operations/union";
@@ -8,7 +10,7 @@ import { utils } from "./utils";
 
 const primitives = Object.freeze(PrimitiveType.TYPES);
 
-const functions = Object.freeze({ fn, construct });
+const functions = Object.freeze({ condition, construct, fn, generic });
 
 const operations = Object.freeze({ union, intersection, not });
 
@@ -21,6 +23,5 @@ exports.default = types;
 /**
  * ! TODO LIST
  * - utility types
- * - conditional types
  * - mapped types
  */

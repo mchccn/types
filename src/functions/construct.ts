@@ -24,7 +24,7 @@ export function construct(...args: [FunctionType, (...args: any[]) => any] | [])
         };
     }
 
-    if (args.length > 2) throw new Error(`Expected 2 arguments, but got ${args.length}`);
+    if (args.length > 2) throw new Error(`Expected 0-2 arguments, but got ${args.length}`);
 
     throw new Error(`Invalid arguments to 'types.construct'.`);
 }
