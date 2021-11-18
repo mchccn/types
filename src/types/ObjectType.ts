@@ -6,7 +6,7 @@ export type ObjectTypeProps = [PropertyKey, PrimitiveType | ObjectTypeProps][];
 export type FinalObjectTypeProps = [PropertyKey, PrimitiveType | ObjectType][];
 
 export class ObjectType<Props extends ObjectTypeProps = ObjectTypeProps> extends Type {
-    private readonly [TYPE] = "ObjectType";
+    protected readonly [TYPE] = "ObjectType";
 
     public readonly props: FinalObjectTypeProps;
 

@@ -17,7 +17,7 @@ export class PrimitiveType<Name extends string = string> extends Type {
         never: new PrimitiveType("never", (v) => false),
     };
 
-    private readonly [TYPE] = "PrimitiveType";
+    protected readonly [TYPE] = "PrimitiveType";
 
     public constructor(name: Name, public readonly validate: (v: any) => boolean) {
         super(name);

@@ -1,12 +1,20 @@
 import { FunctionType } from "../types/FunctionType";
+import { ObjectType } from "../types/ObjectType";
 
+export function construct<Obj extends object = object>(type: ObjectType, obj: Obj): Obj;
 export function construct<Fn extends (...args: any[]) => any>(type: FunctionType, fn: Fn): Fn;
 export function construct(): void;
-export function construct(...args: [FunctionType, (...args: any[]) => any] | []) {
+export function construct(...args: [ObjectType, object] | [FunctionType, (...args: any[]) => any] | []) {
     if (args.length === 0) return;
 
+    if (args.length === 2 && args[0] instanceof ObjectType && typeof args[1] === "object" && args[1]) {
+        const [{ props }, obj] = args as [ObjectType, object];
+
+        //
+    }
+
     if (args.length === 2 && args[0] instanceof FunctionType && typeof args[1] === "function") {
-        const [{ parameters, returnType }, fn] = args;
+        const [{ parameters, returnType }, fn] = args as [FunctionType, (...args: any[]) => any];
 
         return function (...args: Parameters<typeof fn>) {
             if (args.length !== parameters.length)

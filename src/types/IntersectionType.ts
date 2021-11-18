@@ -2,7 +2,7 @@ import { TYPE } from "../constants";
 import { Type } from "./Type";
 
 export class IntersectionType<Intersection extends Type[] = Type[]> extends Type {
-    private readonly [TYPE] = "IntersectionType";
+    protected readonly [TYPE] = "IntersectionType";
 
     public constructor(name: string, public readonly types: Intersection) {
         super(name);

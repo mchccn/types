@@ -2,7 +2,7 @@ import { TYPE } from "../constants";
 import { Type } from "./Type";
 
 export class TupleType<Tuple extends Type[] = Type[]> extends Type {
-    private readonly [TYPE] = "TupleType";
+    protected readonly [TYPE] = "TupleType";
 
     public constructor(name: string, public readonly types: Tuple) {
         super(name);

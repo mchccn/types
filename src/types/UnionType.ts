@@ -2,7 +2,7 @@ import { TYPE } from "../constants";
 import { Type } from "./Type";
 
 export class UnionType<Union extends Type[] = Type[]> extends Type {
-    private readonly [TYPE] = "UnionType";
+    protected readonly [TYPE] = "UnionType";
 
     public constructor(name: string, public readonly types: Union) {
         super(name);

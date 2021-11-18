@@ -2,7 +2,7 @@ import { TYPE } from "../constants";
 import { Type } from "./Type";
 
 export class GenericType extends Type {
-    private readonly [TYPE] = "GenericType";
+    protected readonly [TYPE] = "GenericType";
 
     public constructor(name: string, public readonly parameters: Type[], public readonly type: (v: any) => boolean) {
         super(name);

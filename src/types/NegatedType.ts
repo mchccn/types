@@ -2,7 +2,7 @@ import { TYPE } from "../constants";
 import { Type } from "./Type";
 
 export class NegatedType<T extends Type = Type> extends Type {
-    private readonly [TYPE] = "NegatedType";
+    protected readonly [TYPE] = "NegatedType";
 
     public constructor(name: string, public readonly type: T) {
         super(name);
