@@ -13,6 +13,8 @@ export class UnionType<Union extends Type[] = Type[]> extends Type {
     }
 
     public validate(v: any) {
+        if (process.env.NODE_ENV === "production") return true;
+
         return this.types.some((t) => t.validate(v));
     }
 }

@@ -15,6 +15,8 @@ export class GenericType extends Type {
     }
 
     public validate(v: any) {
+        if (process.env.NODE_ENV === "production") return true;
+
         return this.type(v);
     }
 }

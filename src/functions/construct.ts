@@ -10,11 +10,15 @@ export function construct(...args: [ObjectType, object] | [FunctionType, (...arg
     if (args.length === 2 && args[0] instanceof ObjectType && typeof args[1] === "object" && args[1]) {
         const [{ props }, obj] = args as [ObjectType, object];
 
+        if (process.env.NODE_ENV === "production") return obj;
+
         //
     }
 
     if (args.length === 2 && args[0] instanceof FunctionType && typeof args[1] === "function") {
         const [{ parameters, returnType }, fn] = args as [FunctionType, (...args: any[]) => any];
+
+        if (process.env.NODE_ENV === "production") return fn;
 
         return function (...args: Parameters<typeof fn>) {
             if (args.length !== parameters.length)

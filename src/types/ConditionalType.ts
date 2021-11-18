@@ -9,6 +9,8 @@ export class ConditionalType<IfTrue extends Type = Type, IfFalse extends Type = 
     }
 
     public validate(v: any) {
+        if (process.env.NODE_ENV === "production") return true;
+
         const type = this.picker(v) ? this.ifTrue : this.ifFalse;
 
         return type.validate(v);

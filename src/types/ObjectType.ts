@@ -51,6 +51,8 @@ export class ObjectType<Props extends ObjectTypeProps = ObjectTypeProps> extends
     }
 
     public validate(v: any) {
+        if (process.env.NODE_ENV === "production") return true;
+
         if (typeof v !== "object" || !v) return false;
 
         for (const [key, type] of this.props) {

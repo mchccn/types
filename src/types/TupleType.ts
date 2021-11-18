@@ -13,6 +13,8 @@ export class TupleType<Tuple extends Type[] = Type[]> extends Type {
     }
 
     public validate(v: any) {
+        if (process.env.NODE_ENV === "production") return true;
+
         return Array.isArray(v) && v.length <= this.types.length && this.types.every((t, i) => t.validate(v[i]));
     }
 }

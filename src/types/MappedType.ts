@@ -16,6 +16,8 @@ export class MappedType<Key extends Type = Type, Value extends Type = Type> exte
     }
 
     public validate(v: any) {
+        if (process.env.NODE_ENV === "production") return true;
+
         return Object.getOwnPropertyNames(v).every(
             (k) =>
                 this.value.validate(v[k]) &&

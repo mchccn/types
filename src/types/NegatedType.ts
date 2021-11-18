@@ -13,6 +13,8 @@ export class NegatedType<T extends Type = Type> extends Type {
     }
 
     public validate(v: any) {
+        if (process.env.NODE_ENV === "production") return true;
+
         return !this.type.validate(v);
     }
 }
