@@ -21,9 +21,3 @@ const types = Object.freeze({ ...primitives, ...functions, ...operations, ...uti
 export default types;
 module.exports = types;
 exports.default = types;
-
-/**
- * ! TODO LIST
- * - utility types
- * - mapped types
- */
