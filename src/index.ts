@@ -3,6 +3,7 @@ import { construct } from "./functions/construct";
 import { fn } from "./functions/fn";
 import { generic } from "./functions/generic";
 import { intersection } from "./operations/intersection";
+import { mapped } from "./operations/mapped";
 import { not } from "./operations/not";
 import { tuple } from "./operations/tuple";
 import { union } from "./operations/union";
@@ -13,7 +14,7 @@ const primitives = Object.freeze(PrimitiveType.TYPES);
 
 const functions = Object.freeze({ condition, construct, fn, generic });
 
-const operations = Object.freeze({ intersection, not, tuple, union });
+const operations = Object.freeze({ intersection, mapped, not, tuple, union });
 
 const types = Object.freeze({ ...primitives, ...functions, ...operations, ...utils });
 
