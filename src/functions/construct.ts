@@ -14,11 +14,11 @@ export function construct(...args: [FunctionType, (...args: any[]) => any] | [])
 
             const i = parameters.findIndex((parameter, i) => !parameter.validate(args[i]));
 
-            if (i > -1) throw new Error(`Expected type '${parameters[i].name}' for parameter at index ${i}.`);
+            if (i > -1) throw new Error(`Expected type '${parameters[i].identifier}' for parameter at index ${i}.`);
 
             const v = fn.apply(fn, args);
 
-            if (!returnType.validate(v)) throw new Error(`Expected type '${returnType.name}' for the return value.`);
+            if (!returnType.validate(v)) throw new Error(`Expected type '${returnType.identifier}' for the return value.`);
 
             return v;
         };

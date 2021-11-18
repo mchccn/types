@@ -19,7 +19,7 @@ export function generic<Parameters extends readonly (Type | undefined)[]>(
 
             const i = parameters.findIndex((parameter, i) => (parameter ? !(args[i] instanceof parameter.constructor) : false));
 
-            if (i > -1) throw new Error(`Expected type '${(parameters[i] ?? PrimitiveType.TYPES.any).name}' for parameter at index ${i}.`);
+            if (i > -1) throw new Error(`Expected type '${(parameters[i] ?? PrimitiveType.TYPES.any).identifier}' for parameter at index ${i}.`);
 
             return new GenericType(type.name.length ? type.name : "[anonymous]", args, type(...(args as RemoveUndefined<Parameters>)));
         },
